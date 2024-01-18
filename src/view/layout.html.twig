@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./dist/style.css" rel="stylesheet">
     <script src="./dist/index.js"></script>
+    <title>{%  block title %}{%  endblock %} - Apérouille</title>
+    <style>
+        {%  block style %}{%  endblock %}
+    </style>
 </head>
 <body>
-<h1 class="text-3xl font-bold underline bg-red-400">
-    Meme avec tailwindCSS
-</h1>
+    {% block content %}{% endblock %}
+    <script>
+        {%  block script %}{%  endblock %}
+    </script>
 </body>
 </html>

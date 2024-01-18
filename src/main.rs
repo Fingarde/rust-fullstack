@@ -39,12 +39,12 @@ async fn handler(
 ) -> Html<String> {
     let tera = state.tera.read().await;
 
-    if !tera.templates.contains_key(&format!("{}.html", page)) {
+    if !tera.templates.contains_key(&format!("pages/{}.html.twig", page)) {
         return Html("404".to_string());
     }
 
     let ctx = tera::Context::new();
-    let html = tera.render(&format!("{}.html", page), &ctx).unwrap();
+    let html = tera.render(&format!("pages/{}.html.twig", page), &ctx).unwrap();
 
     Html(html)
 }
@@ -117,7 +117,7 @@ async fn main() {
 
 
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:80").await.unwrap();
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     println!("Listening on 0.0.0.0:3000");
     axum::serve(listener, app).await.unwrap();
 }
